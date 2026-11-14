@@ -1,0 +1,84 @@
+====================================================================
+NMAP SCAN OUTPUT LINE-BY-LINE EXPLANATION GUIDE
+====================================================================
+
+1. SCRIPT HEADER
+--------------------------------------------------------------------
+--- Scan Results ---
+- What it means: This is a custom visual divider printed by your 
+  Python script (`scanner.py`) to separate the Python terminal text 
+  from the raw Nmap data.
+
+
+2. VERSION AND TIMESTAMP LINE
+--------------------------------------------------------------------
+Starting Nmap 7.993 ( https://nmap.org ) at 2026-11-14 19:05 +0530
+- Starting Nmap 7.993: Tells you the exact version of the Nmap tool 
+  currently installed and executing.
+- ( https://nmap.org ): The official website of the Nmap project.
+- at 2026-11-14 19:05 +0530: The precise calendar date, timestamp, 
+  and local timezone offset when the scan was initiated.
+
+
+3. TARGET IDENTIFICATION LINE
+--------------------------------------------------------------------
+Nmap scan report for LAPTOP-XXX111XX (127.0.0.1)
+- LAPTOP-XXX111XX: The computer name (hostname) of the target device 
+  resolved by your local network.
+- (127.0.0.1): The IPv4 address of the target device that was scanned.
+
+
+4. HOST STATUS AND LATENCY LINE
+--------------------------------------------------------------------
+Host is up (0.00027s latency).
+- Host is up: Confirms that the target device is online, active, 
+  and successfully responded to Nmap’s probe packets.
+- (0.00027s latency): The round-trip time it took for Nmap to reach 
+  your machine and get a reply (0.00027 seconds). Because you scanned 
+  your own local machine, this latency is virtually instantaneous.
+
+
+5. PORT SUMMARY LINE
+--------------------------------------------------------------------
+Not shown: 992 closed tcp ports (reset)
+- 992 closed tcp ports: By default, Nmap scans the 1,000 most common 
+  TCP ports. Since only 8 ports appeared in your results, the remaining 
+  992 were closed.
+- (reset): Means the target computer’s operating system actively 
+  responded to Nmap’s probes with TCP "RST" (Reset) packets, explicitly 
+  stating that no application is listening on those ports.
+
+
+6. TABLE HEADER LINE
+--------------------------------------------------------------------
+PORT     STATE     SERVICE       VERSION
+- PORT: The port number and protocol type (e.g., TCP or UDP).
+- STATE: The current status of that port (`open`, `closed`, or 
+  `filtered` by a firewall).
+- SERVICE: The standard name of the protocol or service typically 
+  assigned to that port number.
+- VERSION: The specific vendor software and version number detected 
+  running behind that port.
+
+
+7. DISCOVERED PORT LINES (EXAMPLES)
+--------------------------------------------------------------------
+135/tcp  open      msrpc         Microsoft Windows RPC
+3306/tcp open      mysql         MySQL (unauthorized)
+- 135/tcp: Port number `135` running over the TCP protocol.
+- open: The port is active, listening, and accepting inbound network 
+  connections.
+- msrpc / mysql: The baseline service name identified by Nmap's database.
+- Microsoft Windows RPC / MySQL (unauthorized): The exact software 
+  package and version discovered during service fingerprinting.
+
+
+8. SYSTEM FINGERPRINT FOOTER
+--------------------------------------------------------------------
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+- OS: Windows: Nmap’s detection engine analyzed how the target's 
+  network stack responded and concluded the operating system is Windows.
+- CPE (Common Platform Enumeration): A standardized, structured 
+  naming scheme (`cpe:/o:microsoft:windows`) used by security software 
+  and vulnerability databases to uniquely identify operating systems 
+  and software packages.

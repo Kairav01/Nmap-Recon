@@ -1,0 +1,120 @@
+====================================================================
+COMPREHENSIVE GUIDE TO NMAP (NETWORK MAPPER)
+====================================================================
+
+OVERVIEW
+--------------------------------------------------------------------
+Nmap (Network Mapper) is the world's most popular open-source network 
+discovery and security auditing tool. Created by Gordon Lyon (aka 
+Fyodor) in 1997, it has become an indispensable utility for system 
+administrators, network engineers, and cybersecurity professionals.
+
+Think of Nmap as a digital stethoscope and radar system: it probes 
+networks to map out what devices are connected, what operating systems 
+they run, what services (like web servers or databases) are listening, 
+and whether any firewall rules or security vulnerabilities exist.
+
+
+1. CORE CAPABILITIES OF NMAP
+--------------------------------------------------------------------
+Nmap is modular and performs several distinct phases during a scan:
+
+- Host Discovery:
+  Determines which IP addresses on a network are active (online) by 
+  sending custom packets (like ICMP pings or TCP SYN packets) without 
+  necessarily scanning every port.
+
+- Port Scanning:
+  Enumerates the TCP and UDP ports on a target machine to see which 
+  applications are listening for incoming traffic.
+
+- Service & Version Detection:
+  Analyzes the responses from open ports to identify the exact 
+  software name and version number (e.g., discovering not just that 
+  port 80 is open, but that it is running Apache httpd 2.4.41).
+
+- Operating System (OS) Fingerprinting:
+  Sends a series of custom TCP/IP packets to the target and analyzes 
+  how its network stack responds, allowing Nmap to accurately guess 
+  the operating system (e.g., Windows 11, Linux Ubuntu, or Cisco IOS).
+
+- Nmap Scripting Engine (NSE):
+  A powerful built-in engine written in Lua that allows users to write 
+  or run scripts for automated vulnerability detection, malware 
+  discovery, and advanced reconnaissance.
+
+
+2. ESSENTIAL NMAP COMMAND FLAGS & SCAN TYPES
+--------------------------------------------------------------------
+* nmap -sn <target> (Ping Sweep)
+  Discovers live hosts on a network without scanning any ports.
+
+* nmap -sS <target> (TCP SYN / Stealth Scan)
+  The default and most popular scan. Sends SYN packets and tears down 
+  the connection before the handshake completes to avoid heavy logging.
+
+* nmap -sT <target> (TCP Connect Scan)
+  Completes the full 3-way TCP handshake. Used when you lack 
+  administrative/root privileges to craft raw packets.
+
+* nmap -sU <target> (UDP Scan)
+  Scans UDP ports (like DNS, DHCP, SNMP). Slower because UDP services 
+  often drop packets silently.
+
+* nmap -sV <target> (Service Version Detection)
+  Probes open ports to determine the exact software and version 
+  running behind them.
+
+* nmap -O <target> (OS Detection)
+  Analyzes remote stack responses to fingerprint the target's 
+  operating system.
+
+* nmap -A <target> (Aggressive Scan)
+  Enables OS detection, version detection, script scanning (-sC), and 
+  traceroute all in one command.
+
+* nmap -p 80,443 <target> (Port Specification)
+  Restricts the scan to specific ports (in this case, ports 80 and 443) 
+  to save time.
+
+
+3. HOW NMAP CLASSIFIES PORT STATES
+--------------------------------------------------------------------
+When Nmap finishes scanning a port, it assigns one of six states:
+
+- Open:
+  An application is actively accepting TCP connections or UDP datagrams 
+  on this port. This is the primary target for penetration testers.
+
+- Closed:
+  The port is accessible (it received Nmap's probe and responded), but 
+  no application or service is listening on it.
+
+- Filtered:
+  A firewall, router filter, or network security group is blocking 
+  Nmap's packets from reaching the port, making it impossible to 
+  determine if it's open or closed.
+
+- Unfiltered:
+  The port is accessible, but Nmap cannot determine whether it is open 
+  or closed (typically seen in ACK scans).
+
+- Open|Filtered:
+  Nmap cannot tell if the port is open or filtered (common in UDP and 
+  IP protocol scans where open ports give no response).
+
+- Closed|Filtered:
+  Nmap cannot tell if the port is closed or filtered.
+
+
+4. ETHICS AND LEGALITY
+--------------------------------------------------------------------
+Because Nmap can map out network vulnerabilities and potential entry 
+points, scanning a network or system WITHOUT explicit, written 
+permission is illegal under computer fraud and abuse laws in most 
+jurisdictions.
+
+Ethical hackers and security professionals always use Nmap within 
+dedicated lab environments (like virtual machines, local sandboxes, 
+or networks where they have signed a formal scope of work / 
+authorization agreement).
